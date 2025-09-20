@@ -33,16 +33,6 @@ def write_file():
     socketio.emit("message", f"New content added: {content}")
     return f"Content saved: {content}"
 
-# API REST per aggiungere contenuti via JSON
-@app.route("/api/write", methods=["POST"])
-def api_write():
-    data = request.json
-    text = data.get("text", "")
-    with open("data.txt", "a") as f:
-        f.write(text + "\n")
-    socketio.emit("message", f"API content added: {text}")
-    return jsonify({"status": "ok", "text": text})
-
 # Semplice evento WebSocket
 @socketio.on("connect")
 def handle_connect():
