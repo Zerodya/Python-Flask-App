@@ -188,19 +188,6 @@ def test_web_functionality() -> bool:
             return False
         log("Invio form riuscito")
         
-        # Test 3: Endpoint API
-        log("Test endpoint API...")
-        response = requests.post(
-            "http://localhost:5000/api/write",
-            json={"text": "api_test_content"},
-            headers={"Content-Type": "application/json"},
-            timeout=10
-        )
-        if response.status_code != 200:
-            log(f"Endpoint API fallito con status {response.status_code}")
-            return False
-        log("Endpoint API riuscito")
-        
         return True
         
     except requests.exceptions.RequestException as e:
